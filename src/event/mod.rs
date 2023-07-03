@@ -8,6 +8,8 @@ use termimad::crossterm;
 
 use crossterm::event::{self, Event as CrosstermEvent, KeyEvent, MouseEvent};
 
+use crate::AppResult;
+
 mod handler;
 
 #[derive(Clone, Copy, Debug)]
@@ -63,7 +65,7 @@ impl Default for EventHandler {
 }
 
 impl EventHandler {
-    pub fn new() -> Self {
-        Self::default()
+    pub fn next(&self) -> AppResult<Event> {
+        Ok(self.receiver.recv()?)
     }
 }
