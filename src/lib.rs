@@ -4,4 +4,6 @@ pub use app::{App, AppResult};
 
 pub mod event;
 
-mod tui;
+pub mod tui;
+
+pub mod ui;
