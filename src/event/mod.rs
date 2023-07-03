@@ -12,6 +12,8 @@ use crate::AppResult;
 
 mod handler;
 
+pub use handler::{handle_key_events, handle_mouse_events, handle_resize_events};
+
 #[derive(Clone, Copy, Debug)]
 pub enum Event {
     Tick,
