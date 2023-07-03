@@ -8,10 +8,10 @@ use tui::{
 
 use crate::app::App;
 
-pub struct TemplateRenderer {}
+pub struct TemplateRenderer;
 
 impl TemplateRenderer {
-    pub fn render<B: Backend>(&self, _app: &mut App, frame: &mut Frame<'_, B>) {
+    pub fn render<B: Backend>(_app: &mut App, frame: &mut Frame<'_, B>) {
         let title = "Template";
         let border_type = BorderType::Rounded;
         let borders = Borders::ALL;
@@ -38,6 +38,6 @@ impl TemplateRenderer {
     }
 }
 
-pub fn render<B: Backend>(_app: &mut App, frame: &mut Frame<'_, B>) {
-    TemplateRenderer {}.render(_app, frame);
+pub fn render<B: Backend>(app: &mut App, frame: &mut Frame<'_, B>) {
+    TemplateRenderer::render(app, frame);
 }
