@@ -27,5 +27,7 @@ fn main() -> AppResult<()> {
             Event::Resize(w, h) => handle_resize_events((w, h), &mut app)?,
         }
     }
+
+    tui.exit()?;
     Ok(())
 }
