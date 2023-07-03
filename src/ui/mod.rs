@@ -8,18 +8,36 @@ use tui::{
 
 use crate::app::App;
 
+pub struct TemplateRenderer {}
+
+impl TemplateRenderer {
+    pub fn render<B: Backend>(&self, _app: &mut App, frame: &mut Frame<'_, B>) {
+        let title = "Template";
+        let border_type = BorderType::Rounded;
+        let borders = Borders::ALL;
+        let title_alignment = Alignment::Center;
+        let alignment = Alignment::Center;
+        let fg_color = Color::Cyan;
+        let bg_color = Color::Black;
+        let text = "This is a tui template.";
+
+        let block = Block::default()
+            .title(title)
+            .title_alignment(title_alignment)
+            .borders(borders)
+            .border_type(border_type);
+
+        let style = Style::default().fg(fg_color).bg(bg_color);
+
+        let paragraph = Paragraph::new(text)
+            .block(block)
+            .style(style)
+            .alignment(alignment);
+
+        frame.render_widget(paragraph, frame.size());
+    }
+}
+
 pub fn render<B: Backend>(_app: &mut App, frame: &mut Frame<'_, B>) {
-    frame.render_widget(
-        Paragraph::new("This is a tui template.")
-            .block(
-                Block::default()
-                    .title("Template")
-                    .title_alignment(Alignment::Center)
-                    .borders(Borders::ALL)
-                    .border_type(BorderType::Rounded),
-            )
-            .style(Style::default().fg(Color::Cyan).bg(Color::Black))
-            .alignment(Alignment::Center),
-        frame.size(),
-    )
+    TemplateRenderer {}.render(_app, frame);
 }
